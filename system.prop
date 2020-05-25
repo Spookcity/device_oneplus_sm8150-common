@@ -7,6 +7,9 @@ ro.audio.monitorRotation=true
 bt.max.hfpclient.connections=1
 vendor.bluetooth.soc=cherokee
 
+# Bluetooth
+ro.bluetooth.library_name=libbluetooth_qti.so
+
 # Blurrr
 ro.sf.blurs_are_expensive=1
 ro.surface_flinger.supports_background_blur=1
