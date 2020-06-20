@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SELinux;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -49,6 +50,9 @@ import androidx.preference.TwoStatePreference;
 
 import org.evolution.device.DeviceSettings.FileUtils;
 import org.evolution.device.DeviceSettings.Constants;
+import org.evolution.device.DeviceSettings.R;
+import org.evolution.device.DeviceSettings.SuShell;
+import org.evolution.device.DeviceSettings.SuTask;
 
 public class DeviceSettings extends PreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -71,9 +75,12 @@ public class DeviceSettings extends PreferenceFragment
 
     public static final String KEY_VIBSTRENGTH = "vib_strength";
 
-
     public static final String KEY_SETTINGS_PREFIX = "device_setting_";
 
+    private static final String SELINUX_CATEGORY = "selinux";
+    private static final String PREF_SELINUX_MODE = "selinux_mode";
+    private static final String PREF_SELINUX_PERSISTENCE = "selinux_persistence";
+    
     private static TwoStatePreference mEnableDolbyAtmos;
     private static TwoStatePreference mHBMModeSwitch;
     private static TwoStatePreference mAutoHBMSwitch;
@@ -85,6 +92,8 @@ public class DeviceSettings extends PreferenceFragment
     private ListPreference mMiddleKeyPref;
     private ListPreference mBottomKeyPref;
     private VibratorStrengthPreference mVibratorStrength;
+    private SwitchPreference mSelinuxMode;
+    private SwitchPreference mSelinuxPersistence;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -150,6 +159,21 @@ public class DeviceSettings extends PreferenceFragment
             getPreferenceScreen().removePreference((Preference) findPreference(KEY_CATEGORY_REFRESH));
         }
 
+        // SELinux
+        boolean isRooted = SuShell.detectValidSuInPath();
+        Preference selinuxCategory = findPreference(SELINUX_CATEGORY);
+        mSelinuxMode = (SwitchPreference) findPreference(PREF_SELINUX_MODE);
+        mSelinuxMode.setChecked(SELinux.isSELinuxEnforced());
+        mSelinuxMode.setOnPreferenceChangeListener(this);
+        mSelinuxMode.setEnabled(isRooted);
+
+        mSelinuxPersistence =
+        (SwitchPreference) findPreference(PREF_SELINUX_PERSISTENCE);
+        mSelinuxPersistence.setOnPreferenceChangeListener(this);
+        mSelinuxPersistence.setChecked(getContext()
+        .getSharedPreferences("selinux_pref", Context.MODE_PRIVATE)
+        .contains(PREF_SELINUX_MODE));
+        mSelinuxPersistence.setEnabled(isRooted);
     }
 
     @Override
@@ -175,8 +199,13 @@ public class DeviceSettings extends PreferenceFragment
             SharedPreferences.Editor prefChange = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
             prefChange.putBoolean(KEY_AUTO_HBM_SWITCH, enabled).commit();
             Utils.enableService(getContext());
-        }
-        else if (preference == mEnableDolbyAtmos) {
+        } else if (preference == mSelinuxMode) {
+            boolean enabled = (Boolean) newValue;
+            new SwitchSelinuxTask(getActivity()).execute(enabled);
+            setSelinuxEnabled(enabled, mSelinuxPersistence.isChecked());
+        } else if (preference == mSelinuxPersistence) {
+            setSelinuxEnabled(mSelinuxMode.isChecked(), (Boolean) newValue);
+        } else if (preference == mEnableDolbyAtmos) {
             boolean enabled = (Boolean) newValue;
             Intent daxService = new Intent();
             ComponentName name = new ComponentName("com.dolby.daxservice", "com.dolby.daxservice.DaxService");
@@ -192,11 +221,9 @@ public class DeviceSettings extends PreferenceFragment
                 this.getContext().getPackageManager().setComponentEnabledSetting(name,
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED, 0);
             }
-            return true; 
         }
         else {
             Constants.setPreferenceInt(getContext(), preference.getKey(), Integer.parseInt((String) newValue));
-            return true;
         } 
         return true;
     }
@@ -214,5 +241,43 @@ public class DeviceSettings extends PreferenceFragment
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setSelinuxEnabled(boolean status, boolean persistent) {
+      SharedPreferences.Editor editor = getContext()
+          .getSharedPreferences("selinux_pref", Context.MODE_PRIVATE).edit();
+      if (persistent) {
+        editor.putBoolean(PREF_SELINUX_MODE, status);
+      } else {
+        editor.remove(PREF_SELINUX_MODE);
+      }
+      editor.apply();
+      mSelinuxMode.setChecked(status);
+    }
+
+    private class SwitchSelinuxTask extends SuTask<Boolean> {
+      public SwitchSelinuxTask(Context context) {
+        super(context);
+      }
+      @Override
+      protected void sudoInBackground(Boolean... params) throws SuShell.SuDeniedException {
+        if (params.length != 1) {
+          return;
+        }
+        if (params[0]) {
+          SuShell.runWithSuCheck("setenforce 1");
+        } else {
+          SuShell.runWithSuCheck("setenforce 0");
+        }
+      }
+
+      @Override
+      protected void onPostExecute(Boolean result) {
+        super.onPostExecute(result);
+        if (!result) {
+          // Did not work, so restore actual value
+          setSelinuxEnabled(SELinux.isSELinuxEnforced(), mSelinuxPersistence.isChecked());
+        }
+      }
     }
 }
