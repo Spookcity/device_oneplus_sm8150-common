@@ -81,7 +81,7 @@
     <string name="enable_dolby_info">Note: With Dolby Atmos enabled, other EQ effects like MusicFX are disabled on all outputs.</string>
 
     <!-- Selinux Switch -->
-    <string name="selinux_explanation_summary">SELinux is a set of kernel modifications and user-space tools. Changing modes can cause unwanted effects. Use at your own risk.</string>
+    <string name="selinux_explanation_summary">SELinux is a set of kernel modifications and user-space tools. Changing modes can cause unwanted effects. Use at your own risk (will be grayed out if su not found!).</string>
     <string name="selinux_category">SELinux</string>
     <string name="selinux_mode_title">SELinux mode</string>
     <string name="selinux_permissive_summary">Permissive</string>
