@@ -240,8 +240,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.10 \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.allocator@1.0-service \
-    vendor.qti.hardware.display.allocator@1.0.vendor \
-    vendor.qti.hardware.display.mapper@3.0.vendor
+    vendor.qti.hardware.display.allocator@1.0.vendor
 
 # Doze
 PRODUCT_PACKAGES += \
