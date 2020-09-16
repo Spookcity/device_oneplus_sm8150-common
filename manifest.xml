@@ -1020,7 +1020,7 @@
         </interface>
         <fqname>@1.0::IPasrManager/default</fqname>
     </hal>
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>vendor.lineage.biometrics.fingerprint.inscreen</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -1028,7 +1028,7 @@
             <name>IFingerprintInscreen</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.fingerprint</name>
         <transport>hwbinder</transport>
@@ -1038,7 +1038,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+    <!-- <hal format="hidl">
         <name>vendor.lineage.livedisplay</name>
         <transport>hwbinder</transport>
         <version>2.0</version>
@@ -1055,5 +1055,5 @@
             <name>ITouchscreenGesture</name>
             <instance>default</instance>
         </interface>
-    </hal>
+    </hal> -->
 </manifest>
