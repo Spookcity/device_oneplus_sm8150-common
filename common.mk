@@ -510,6 +510,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.vndk.current.on_vendor
 
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-lite-vendorcompat \
+    libprotobuf-cpp-full-vendorcompat
+
 # Wifi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
