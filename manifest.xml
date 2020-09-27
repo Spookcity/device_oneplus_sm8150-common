@@ -288,8 +288,8 @@
             <instance>SIM1</instance>
             <instance>eSE1</instance>
         </interface>
-        <fqname>@1.2::ISecureElement/SIM1</fqname>
-        <fqname>@1.2::ISecureElement/eSE1</fqname>
+        <fqname>@1.1::ISecureElement/SIM1</fqname>
+        <fqname>@1.1::ISecureElement/eSE1</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.soundtrigger</name>
@@ -428,6 +428,16 @@
             <instance>default</instance>
         </interface>
         <fqname>@1.0::INxpNfc/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.nxp.nxpese</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>INxpEse</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::INxpEse/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.oneplus.camera.CameraHIDL</name>
