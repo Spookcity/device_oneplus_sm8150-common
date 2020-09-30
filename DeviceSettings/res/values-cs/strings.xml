@@ -12,8 +12,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="audio_title">Zvuk</string>
-    <string name="dolby_title">Dolby Atmos</string>
     <string name="device_title">OnePlus nastavení</string>
     <string name="device_summary">Upravte konkrétní nastavení pro zařízení OnePlus</string>
     <string name="display_title">Displej</string>

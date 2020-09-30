@@ -12,8 +12,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="audio_title">音声</string>
-    <string name="dolby_title">Dolby Atmos</string>
     <string name="device_title">OnePlus 設定</string>
     <string name="device_summary">OnePlus 専用の端末設定を調整する</string>
     <string name="display_title">ディスプレイ</string>

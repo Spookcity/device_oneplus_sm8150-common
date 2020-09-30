@@ -12,8 +12,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="audio_title">Âm thanh</string>
-    <string name="dolby_title">Dolby Atmos</string>
     <string name="device_title">Cài đặt OnePlus</string>
     <string name="device_summary">Điều chỉnh cài đặt thiết bị cụ thể của OnePlus</string>
     <string name="display_title">Màn hình hiển thị</string>

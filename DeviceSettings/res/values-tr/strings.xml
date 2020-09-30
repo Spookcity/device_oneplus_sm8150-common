@@ -12,8 +12,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="audio_title">Ses</string>
-    <string name="dolby_title">Dolby Atmos</string>
     <string name="device_title">OnePlus Ayarları</string>
     <string name="device_summary">OnePlus\'a özel cihaz ayarlarını düzenleyin</string>
     <string name="display_title">Ekran</string>

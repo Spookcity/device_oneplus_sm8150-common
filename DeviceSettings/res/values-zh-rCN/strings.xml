@@ -12,8 +12,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="audio_title">音频</string>
-    <string name="dolby_title">杜比全景声</string>
     <string name="device_title">一加设置</string>
     <string name="device_summary">调整一加特定设备设置</string>
     <string name="display_title">显示</string>

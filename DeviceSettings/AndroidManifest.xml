@@ -66,9 +66,7 @@
             </intent-filter>
         </activity>
 
-        <receiver 
-            android:name="org.evolution.device.DeviceSettings.Startup" 
-            android:enabled="true">
+        <receiver android:name="org.evolution.device.DeviceSettings.Startup" >
             <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

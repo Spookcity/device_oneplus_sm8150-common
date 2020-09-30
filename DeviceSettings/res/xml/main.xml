@@ -12,31 +12,6 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:key="audio"
-        android:title="@string/audio_title">
-
-        <SwitchPreference
-            android:key="enable_dolby_atmos"
-            android:summary="@string/enable_dolby_summary"
-            android:title="@string/enable_dolby_title"
-            android:icon="@drawable/ic_dolby"
-            android:defaultValue="true"
-            android:persistent="true" />
-
-        <Preference
-            android:key="audio_dolby_atmos"
-            android:title="@string/dolby_title"
-            android:summary="@string/dolby_summary"
-            android:icon="@drawable/ic_dolby_atmos"
-            android:dependency="enable_dolby_atmos"
-            android:persistent="false">
-            <intent
-                 android:targetPackage="com.oneplus.sound.tuner"
-                 android:targetClass="com.oneplus.sound.tuner.panoramic.DolbyPanoramicSoundActivity" />
-        </Preference>
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="graphics"
         android:title="@string/display_title">
 
@@ -73,23 +48,6 @@
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="org.evolution.device.DeviceSettings"
                     android:targetClass="org.evolution.device.DeviceSettings.PanelSettingsActivity" />
-        </Preference>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="doze"
-        android:title="@string/doze_panel_title">
-
-        <Preference
-            android:key="advanced_doze_settings"
-            android:icon="@drawable/ic_doze"
-            android:persistent="false"
-            android:title="@string/doze_settings_title"
-            android:summary="@string/doze_settings_summary">
-            <intent
-                    android:action="android.intent.action.MAIN"
-                    android:targetPackage="org.evolution.settings.doze" 
-                    android:targetClass="org.evolution.settings.doze.DozeSettingsActivity"/>
         </Preference>
     </PreferenceCategory>
 
@@ -171,29 +129,6 @@
           android:summary="%s"
           android:entries="@array/notification_slider_action_entries"
           android:entryValues="@array/notification_slider_action_entry_values" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="selinux"
-        android:title="@string/selinux_category">
-
-       <Preference
-          android:summary="@string/selinux_explanation_summary"
-          android:selectable="false"/>
-
-       <SwitchPreference
-          android:key="selinux_mode"
-          android:icon="@drawable/ic_linux"
-          android:title="@string/selinux_mode_title"
-          android:summaryOn="@string/selinux_enforcing_summary"
-          android:summaryOff="@string/selinux_permissive_summary" />
-
-        <SwitchPreference
-          android:key="selinux_persistence"
-          android:icon="@drawable/ic_power"
-          android:title="@string/selinux_persistence_title"
-          android:summary="@string/selinux_persistence_summary"
-          android:defaultValue="true" />
     </PreferenceCategory>
 
     <PreferenceCategory

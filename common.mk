@@ -491,8 +491,8 @@ PRODUCT_PACKAGES += \
  #   vendor.lineage.touch@1.0-service.oneplus_msmnile
 
 # Evo Device Settings
-#PRODUCT_PACKAGES += \
-  #  DeviceSettings
+PRODUCT_PACKAGES += \
+    DeviceSettings
 
 # tri-state key
 PRODUCT_PACKAGES += \
