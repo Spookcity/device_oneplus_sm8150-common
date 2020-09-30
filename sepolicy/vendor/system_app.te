@@ -11,3 +11,6 @@ allow system_app vendor_default_prop:file read;
 
 # allow system_app to interact with pasr hal
 hal_client_domain(system_app, hal_pasrmanager)
+
+typeattribute system_app hal_fingerprint_client;
+allow system_app hal_fingerprint_hwservice:hwservice_manager find;
