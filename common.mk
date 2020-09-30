@@ -516,6 +516,9 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 PRODUCT_PACKAGES += \
+    libstdc++.vendor \
+    vndk-sp \
+    vndk_package \
     com.android.vndk.current.on_vendor
 
 PRODUCT_PACKAGES += \
