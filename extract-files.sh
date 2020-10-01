@@ -103,3 +103,9 @@ fix_xml_version product/etc/permissions/vendor.qti.hardware.data.connection-V1.0
 fix_xml_version product/etc/permissions/vendor.qti.hardware.data.connection-V1.1-java.xml
 
 "${MY_DIR}/setup-makefiles.sh"
+
+CAM32="$AOSP_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib/hw/camera.qcom.so
+patchelf --replace-needed libhidlbase.so libhidlbase-v29.so "$CAM32"
+
+CAM64="$AOSP_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib64/hw/camera.qcom.so
+patchelf --replace-needed libhidlbase.so libhidlbase-v29.so "$CAM64"
