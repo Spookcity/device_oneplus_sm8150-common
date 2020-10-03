@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from OnePlus7ProOxygen_21.P.28_OTA_028_all_2007240027_b336a0d372f0008
+# All unpinned blobs below are extracted from OnePlus7ProOxygen_21.P.29_OTA_029_all_2009281606_becce49
 
 # ADSP
 vendor/bin/adsprpcd
@@ -1550,10 +1550,6 @@ vendor/firmware/tp/LIMIT_19801_SY761.img
 vendor/firmware/tp/LIMIT_19801_SY761_NEW.img
 vendor/firmware/tp/LIMIT_19861_SY761.img
 vendor/firmware/tp/LIMIT_19861_SY761_NEW.img
-
-# Translation
-vendor/lib/vendor.oneplus.hardware.translation@1.0.so
-vendor/lib64/vendor.oneplus.hardware.translation@1.0.so
 
 # Trusted User Interface
 vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti
