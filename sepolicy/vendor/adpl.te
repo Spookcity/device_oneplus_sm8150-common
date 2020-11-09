@@ -1,2 +1,0 @@
-# Allow adpl to read and write to diag_device
-allow adpl diag_device:chr_file { ioctl read write open };

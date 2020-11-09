@@ -1,2 +1,0 @@
-# Allow dpmd to read and write to diag_device
-allow dpmd diag_device:chr_file { ioctl read write getattr open };

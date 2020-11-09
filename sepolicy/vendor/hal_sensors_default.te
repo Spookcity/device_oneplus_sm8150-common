@@ -77,6 +77,3 @@ allow hal_sensors_default property_socket:sock_file write;
 
 # Allow hal_sensors_default to connect to init:unix_stream_socket
 allow hal_sensors_default init:unix_stream_socket connectto;
-
-# Allow hal_sensors_default to read and write to diag_device
-allow hal_sensors_default diag_device:chr_file { ioctl read write getattr open };
