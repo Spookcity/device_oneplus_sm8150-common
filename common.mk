@@ -456,6 +456,10 @@ PRODUCT_SOONG_NAMESPACES += \
     device/oneplus/common \
     hardware/qcom-caf/sm8150
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # Telephony
 PRODUCT_PACKAGES += \
     ims-ext-common \
