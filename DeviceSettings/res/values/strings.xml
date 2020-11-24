@@ -48,6 +48,10 @@
     <string name="fps_info_title">FPS overlay</string>
     <string name="fps_info_summary">Show overlay with with current frames per second</string>
     <string name="panel_mode_info">Disable panel mode requires reboot.</string>
+    <!-- Doze -->
+    <string name="doze_panel_title">Doze</string>
+    <string name="doze_settings_title">Advanced doze settings</string>
+    <string name="doze_settings_summary">Handle sensor related wake events</string>
 
     <!-- Notification slider -->
     <string name="notification_slider_category_title">Notification slider</string>
