@@ -171,7 +171,7 @@ PRODUCT_PACKAGES += \
     libxml2 \
     vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.oneplus.camera.CameraHIDL@1.0.vendor \
-    GCamGo
+    Snap
 
 # CNE
 PRODUCT_PACKAGES += \
