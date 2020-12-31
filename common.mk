@@ -335,16 +335,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.oneplus_msmnile
 
-# LiveDisplay
-#PRODUCT_PACKAGES += \
- #   vendor.lineage.livedisplay@2.0-service-sdm
-
-# Media
-
-PRODUCT_PACKAGES += \
-    libavservices_minijail \
-    libavservices_minijail_vendor
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
@@ -381,6 +371,10 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
+    libavservices_minijail \
+    libavservices_minijail_vendor \
+    libavservices_minijail_32 \
+    libavservices_minijail.vendor \
     libc2dcolorconvert \
     libcodec2_hidl@1.0.vendor \
     libcodec2_vndk.vendor \
