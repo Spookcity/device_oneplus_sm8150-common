@@ -864,8 +864,8 @@ vendor/etc/init/android.hardware.neuralnetworks@1.2-service-qti.rc
 vendor/lib64/libhexagon_nn_stub.so
 
 # NFC
--app/NxpNfcNci/NxpNfcNci.apk|3ee559a8d5e83fdb0e49c82a6ae8674811ecbb37
--app/NxpSecureElement/NxpSecureElement.apk
+-system_ext/app/NxpNfcNci/NxpNfcNci.apk
+-system_ext/app/NxpSecureElement/NxpSecureElement.apk
 etc/nfc_card_config.conf
 etc/nfcee_access.xml|2b6ae484bffbc47033ba475de8eae756c9364125
 system_ext/etc/permissions/com.nxp.nfc.xml
