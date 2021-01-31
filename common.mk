@@ -333,10 +333,6 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.oneplus_msmnile
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
