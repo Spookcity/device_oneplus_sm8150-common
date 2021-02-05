@@ -300,13 +300,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
-# HWBinder
-PRODUCT_PACKAGES += \
-    libhwbinder \
-    libhwbinder.vendor \
-    libhidltransport \
-    libhidltransport.vendor
-
 # Input
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/fpc1020.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/fpc1020.kl \
@@ -423,10 +416,6 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2
 
-# Vendor libstdc++
-PRODUCT_PACKAGES += \
-    libstdc++.vendor
-
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
@@ -509,18 +498,22 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service \
+    android.hardware.usb@1.0-service
 
 # Vendor libgui
 PRODUCT_PACKAGES += \
     libgui_vendor
 
+# Vendor libstdc++
+PRODUCT_PACKAGES += \
+    libstdc++.vendor
+
 # VNDK
 PRODUCT_PACKAGES += \
-    libstdc++.vendor \
-    vndk-sp \
-    vndk_package \
-    com.android.vndk.current.on_vendor
+    libhidltransport \
+    libhidltransport.vendor \
+    libhwbinder \
+    libhwbinder.vendor
 
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-lite-vendorcompat \
