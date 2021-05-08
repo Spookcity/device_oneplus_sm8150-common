@@ -28,16 +28,17 @@
  */
 
 #include <android-base/properties.h>
-#include <stdlib.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <stdio.h>
-#include <sys/_system_properties.h>
+#include <stdlib.h>
+#include <sys/sysinfo.h>
 #include <sys/system_properties.h>
+#include <sys/_system_properties.h>
 
+#include "property_service.h"
 #include "vendor_init.h"
 
 using android::base::GetProperty;
-using android::base::SetProperty;
 
 void property_override(char const prop[], char const value[]) {
   prop_info *pi;
@@ -49,6 +50,11 @@ void property_override(char const prop[], char const value[]) {
     __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
+void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[]) {
+    property_override(system_prop, value);
+    property_override(vendor_prop, value);
+}
+
 void property_override_multi(char const system_prop[], char const vendor_prop[],char const bootimage_prop[], char const value[]) {
     property_override(system_prop, value);
     property_override(vendor_prop, value);
@@ -56,6 +62,123 @@ void property_override_multi(char const system_prop[], char const vendor_prop[],
 }
 
 void vendor_load_properties() {
+  int prj_version = stoi(android::base::GetProperty("ro.boot.prj_version", ""));
+  int project_name = stoi(android::base::GetProperty("ro.boot.project_name", ""));
+  int rf_version = stoi(android::base::GetProperty("ro.boot.rf_version", ""));
+  switch(project_name){
+    case 18857:
+      /* OnePlus 7 */
+      switch (rf_version){
+        case 1:
+          /* China */
+          property_override("ro.product.model", "GM1900");
+          break;
+        case 3:
+          /* India*/
+          property_override("ro.product.model", "GM1901");
+          break;
+        case 4:
+          /* Europe */
+          property_override("ro.product.model", "GM1903");
+          break;
+        case 5:
+          /* Global / US Unlocked */
+          property_override("ro.product.model", "GM1907");
+          break;
+        default:
+          /* Generic */
+          property_override("ro.product.model", "GM1907");
+          break;
+      }
+      break;
+    case 18821:
+      /* OnePlus 7 Pro */
+      switch (rf_version){
+        case 1:
+          /* China */
+          property_override("ro.product.model", "GM1910");
+          break;
+        case 2:
+          /* T-Mobile */
+          property_override("ro.product.model", "GM1915");
+          break;
+        case 3:
+          /* India */
+          property_override("ro.product.model", "GM1911");
+          break;
+        case 4:
+          /* Europe */
+          property_override("ro.product.model", "GM1913");
+          break;
+        case 5:
+          /* Global / US Unlocked */
+          property_override("ro.product.model", "GM1917");
+          break;
+        default:
+          /* Generic */
+          property_override("ro.product.model", "GM1917");
+          break;
+      }
+      break;
+    case 18865:
+      /* OnePlus 7T */
+      switch (rf_version){
+        case 1:
+          /* China */
+          property_override("ro.product.model", "HD1900");
+          break;
+        case 2:
+          /* T-Mobile */
+          property_override("ro.product.model", "HD1907");
+          break;
+        case 3:
+          /* India */
+          property_override("ro.product.model", "HD1901");
+          break;
+        case 4:
+          /* Europe */
+          property_override("ro.product.model", "HD1903");
+          break;
+        case 5:
+          /* Global / US Unlocked */
+          property_override("ro.product.model", "HD1905");
+          break;
+        default:
+          /* Generic */
+          property_override("ro.product.model", "HD1905");
+          break;
+      }
+      break;
+    case 19801:
+      /* OnePlus 7T Pro */
+      switch (rf_version){
+        case 1:
+          /* China */
+          property_override("ro.product.model", "HD1910");
+          break;
+        case 3:
+          /* India */
+          property_override("ro.product.model", "HD1911");
+          break;
+        case 4:
+          /* Europe */
+          property_override("ro.product.model", "HD1913");
+          break;
+        case 5:
+          /* Global / US Unlocked */
+          property_override("ro.product.model", "HD1917");
+          break;
+        default:
+          /* Generic */
+          property_override("ro.product.model", "HD1917");
+          break;
+      }
+      break;
+    }
+
+    property_override("vendor.boot.prj_version", std::to_string(prj_version).c_str());
+    property_override_dual("vendor.rf.version", "vendor.boot.rf_version", std::to_string(rf_version).c_str());
+
   // fingerprint
   property_override_multi("ro.build.fingerprint", "ro.vendor.build.fingerprint","ro.bootimage.build.fingerprint", "google/redfin/redfin:11/RQ1A.210205.004/7038034:user/release-keys");
 }
