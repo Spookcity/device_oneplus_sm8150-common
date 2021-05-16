@@ -12,15 +12,9 @@ allow vendor_init vendor_sysfs_ssr_toggle:file w_file_perms;
 # Allow init to create fpc_images_file
 allow vendor_init fpc_images_file:dir create_dir_perms;
 
-# Allow init to create nfc_data_file
-allow vendor_init nfc_data_file:dir create_dir_perms;
-
 # Allow init to create tmpfs
 allow vendor_init tmpfs:dir create_dir_perms;
 
-allow vendor_init default_prop:file read;
-allow vendor_init nfc_prop:file read;
-allow vendor_init persist_debug_prop:file read;
 allow vendor_init vendor_sensors_prop:property_service set;
 
 # Allow vendor_init to set vendor_disable_spu_prop
