@@ -23,9 +23,6 @@
     -->
     <integer name="config_fingerprintSensorLocation">1</integer>
 
-    <!-- Smart Charging -->
-    <bool name="config_supportSmartCharging">true</bool>
-
     <!-- Screen off FOD -->
     <bool name="config_supportScreenOffFod">true</bool>
 
