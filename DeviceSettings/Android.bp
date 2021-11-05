@@ -11,7 +11,7 @@ android_app {
         "vendor.oneplus.hardware.camera-V1.0-java",
     ],
     required: [
-        "privapp_whitelist_com.krypton.settings.device",
+        "privapp_whitelist_org.evolution.settings.device",
     ],
     srcs: [
         "src/**/*.java",
@@ -23,7 +23,7 @@ android_app {
 }
 
 prebuilt_etc {
-    name: "privapp_whitelist_com.krypton.settings.device",
+    name: "privapp_whitelist_org.evolution.settings.device",
     sub_dir: "permissions",
     src: "privapp-permissions-devicesettings.xml",
     filename_from_src: true,
