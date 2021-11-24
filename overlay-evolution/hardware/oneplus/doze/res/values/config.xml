@@ -13,6 +13,8 @@
      limitations under the License.
 -->
 <resources>
+    <string name="disabled_for_aod">Disabled when AOD is on</string>
+    <string name="disabled_for_doze">Disabled when doze is off</string>
     <!-- Sensor types -->
     <string name="pickup_sensor_type">oneplus.sensor.op_motion_detect</string>
 </resources>
