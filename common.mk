@@ -191,9 +191,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
     $(LOCAL_PATH)/configs/component-overrides_qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/component-overrides.xml
 
-# DeviceSettings
+# DeviceExtras Package
 PRODUCT_PACKAGES += \
-    DeviceSettings
+    DeviceExtras
 
 # Display
 PRODUCT_PACKAGES += \
@@ -371,11 +371,7 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     libril_shim \
     librmnetctl \
-    libxml2 
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.oneplus
+    libxml2
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
@@ -435,6 +431,10 @@ include $(LOCAL_PATH)/interfaces-vndk.mk
 
 # VNDK
 PRODUCT_EXTRA_VNDK_VERSIONS := 30
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.vibrator.service.oneplus
 
 # Wifi
 PRODUCT_PACKAGES += \

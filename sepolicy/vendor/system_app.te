@@ -21,3 +21,5 @@ allow system_app sysfs_leds:dir { search };
 
 allow system_app hal_cameraHIDL_hwservice:hwservice_manager find;
 binder_call(system_app, hal_cameraHIDL_default)
+
+allow system_app sysfs_dm:file rw_file_perms;
