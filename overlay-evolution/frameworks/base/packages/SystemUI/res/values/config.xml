@@ -25,8 +25,12 @@
     -->
     <integer name="config_udfpsHbmType">0</integer>
 
-    <!-- Udfps vendor code -->
-    <integer name="config_udfps_vendor_code">0</integer>
+        <!-- UDFPS vendor code -->
+    <integer name="config_udfpsVendorCode">0</integer>
+
+    <!-- Whether to pulse onFingerDown actions instead
+        of waking the screen while the screen is off or in lpm. -->
+    <bool name="config_pulseOnFingerDown">true</bool>
 
     <!-- Allow devices override audio panel location to the left side -->
     <bool name="config_audioPanelOnLeftSide">true</bool>
