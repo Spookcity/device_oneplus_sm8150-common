@@ -57,6 +57,7 @@ persist.vendor.qcom.bluetooth.scram.enabled=true
 persist.vendor.qcom.bluetooth.soc=cherokee
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 ro.bluetooth.a2dp_offload.supported=true
+bluetooth.profile.asha.central.enabled=true
 
 # Camera
 ro.vendor.camera.res.fmq.size=1048576
