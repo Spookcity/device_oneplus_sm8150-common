@@ -1,0 +1,4 @@
+on boot
+    # Smart charging input suspend node
+    chown system system /sys/class/power_supply/battery/mi_charging_enable
+    chmod 0666 /sys/class/power_supply/battery/mi_charging_enable

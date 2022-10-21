@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2018-2019 The LineageOS Project
+# Copyright (C) 2022 The Evolution X Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -18,11 +19,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AntHalService-Soong \
     com.dsi.ant@1.0.vendor
-
-# Alert slider
-PRODUCT_PACKAGES += \
-    KeyHandler \
-    tri-state-key-calibrate
 
 # APEX
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
@@ -106,6 +102,7 @@ PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0 \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
+    GCamGOPrebuilt-V3 \
     libxml2 \
     vendor.qti.hardware.camera.device@1.0.vendor
 
@@ -149,10 +146,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-
-# Doze
-PRODUCT_PACKAGES += \
-    OplusDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -220,6 +213,7 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     init.class_main.sh \
+    init.evolution.rc \
     init.oplus.rc \
     init.oplus.sh \
     init.qcom.early_boot.sh \
@@ -298,12 +292,13 @@ PRODUCT_PACKAGES += \
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
-
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
+    EvolutionFrameworksResCommon \
+    EvolutionSettingsProviderResCommon \
+    EvolutionSettingsResCommon \
+    EvolutionSystemUIResCommon \
     FrameworksResTarget \
     OPlusFrameworksResCommon
 
@@ -389,10 +384,6 @@ PRODUCT_COPY_FILES += \
 # Touch
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.oplus
-
-# Trust HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
 
 # Update engine
 PRODUCT_PACKAGES += \
