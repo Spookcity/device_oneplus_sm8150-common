@@ -215,6 +215,7 @@ PRODUCT_PACKAGES += \
     init.class_main.sh \
     init.evolution.rc \
     init.oplus.rc \
+    init.oplus_extras.rc \
     init.oplus.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
@@ -289,6 +290,11 @@ PRODUCT_PACKAGES += \
     libOmxVidcCommon \
     libstagefrighthw
 
+# OPlusExtras
+PRODUCT_PACKAGES += \
+    OPlusExtras \
+    tri-state-key-calibrate
+
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
@@ -300,6 +306,7 @@ PRODUCT_PACKAGES += \
     EvolutionSettingsResCommon \
     EvolutionSystemUIResCommon \
     FrameworksResTarget \
+    OPlusExtrasResCommon \
     OPlusFrameworksResCommon
 
 # Power
