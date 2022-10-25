@@ -104,7 +104,6 @@ PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0 \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
-    GCamGOPrebuilt-V3 \
     libxml2 \
     vendor.qti.hardware.camera.device@1.0.vendor
 
