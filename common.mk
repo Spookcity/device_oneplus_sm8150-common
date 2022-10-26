@@ -4,6 +4,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+BOARD_DYNAMIC_PARTITIONS_FILESYSTEM ?= erofs
+
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
@@ -11,7 +13,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
+    FILESYSTEM_TYPE_system=$(BOARD_DYNAMIC_PARTITIONS_FILESYSTEM) \
     POSTINSTALL_OPTIONAL_system=true
 
 PRODUCT_PACKAGES += \
