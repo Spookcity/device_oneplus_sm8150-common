@@ -9,6 +9,9 @@ BOARD_DYNAMIC_PARTITIONS_FILESYSTEM ?= erofs
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# Prebuilt Apps
+$(call inherit-product, vendor/addons/prebuilts/config.mk)
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
