@@ -315,7 +315,8 @@ PRODUCT_PACKAGES += \
     EvolutionSystemUIResCommon \
     FrameworksResTarget \
     OPlusExtrasResCommon \
-    OPlusFrameworksResCommon
+    OPlusFrameworksResCommon \
+    OPlusSystemUIResCommon
 
 # Power
 PRODUCT_PACKAGES += \
