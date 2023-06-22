@@ -83,6 +83,25 @@ int64_t msFromNs(int64_t nanos) {
     return nanos / nanosecondsInAMillsecond;
 }
 
+bool patchOPPickupSensor(V2_1::SensorInfo& sensor) {
+    if (sensor.typeAsString != "oneplus.sensor.op_motion_detect") {
+        return true;
+    }
+
+    /*
+     * Implement only the wake-up version of this sensor.
+     */
+    if (!(sensor.flags & V1_0::SensorFlagBits::WAKE_UP)) {
+        return false;
+    }
+
+    sensor.type = V2_1::SensorType::PICK_UP_GESTURE;
+    sensor.typeAsString = SENSOR_STRING_TYPE_PICK_UP_GESTURE;
+    sensor.maxRange = 1;
+
+    return true;
+}
+
 HalProxy::HalProxy() {
     const char* kMultiHalConfigFile = "/vendor/etc/sensors/hals.conf";
     initializeSubHalListFromConfigFile(kMultiHalConfigFile);
@@ -126,9 +145,7 @@ Return<void> HalProxy::getSensorsList_2_1(ISensorsV2_1::getSensorsList_2_1_cb _h
 Return<void> HalProxy::getSensorsList(ISensorsV2_0::getSensorsList_cb _hidl_cb) {
     std::vector<V1_0::SensorInfo> sensors;
     for (const auto& iter : mSensors) {
-      if (iter.second.type != SensorType::HINGE_ANGLE) {
         sensors.push_back(convertToOldSensorInfo(iter.second));
-      }
     }
     _hidl_cb(sensors);
     return Void();
@@ -263,8 +280,8 @@ Return<Result> HalProxy::initializeCommon(
         Result currRes = mSubHalList[i]->initialize(this, this, i);
         if (currRes != Result::OK) {
             result = currRes;
-            ALOGE("Subhal '%s' failed to initialize with reason %" PRId32 ".",
-                  mSubHalList[i]->getName().c_str(), static_cast<int32_t>(currRes));
+            ALOGE("Subhal '%s' failed to initialize.", mSubHalList[i]->getName().c_str());
+            break;
         }
     }
 
@@ -356,7 +373,7 @@ Return<void> HalProxy::debug(const hidl_handle& fd, const hidl_vec<hidl_string>&
         return Void();
     }
 
-    int writeFd = fd->data[0];
+    android::base::borrowed_fd writeFd = dup(fd->data[0]);
 
     std::ostringstream stream;
     stream << "===HalProxy===" << std::endl;
@@ -495,11 +512,16 @@ void HalProxy::initializeSensorList() {
                     ALOGV("Loaded sensor: %s", sensor.name.c_str());
                     sensor.sensorHandle = setSubHalIndex(sensor.sensorHandle, subHalIndex);
                     setDirectChannelFlags(&sensor, mSubHalList[subHalIndex]);
-                    if (static_cast<int>(sensor.type) == SENSOR_TYPE_QTI_WISE_LIGHT) {
+                    if (static_cast<int>(sensor.type) == SENSOR_TYPE_QTI_HARDWARE_LIGHT) {
                         sensor.type = SensorType::LIGHT;
                         ALOGV("Replaced QTI Light sensor with standard light sensor");
                         AlsCorrection::init();
                     }
+                    bool keep = patchOPPickupSensor(sensor);
+                    if (!keep) {
+                        continue;
+                    }
+
                     mSensors[sensor.sensorHandle] = sensor;
                 }
             }
@@ -671,7 +693,7 @@ void HalProxy::postEventsToMessageQueue(const std::vector<Event>& eventsList, si
     }
     std::vector<Event> events(eventsList);
     for (auto& event : events) {
-        if (static_cast<int>(event.sensorType) == SENSOR_TYPE_QTI_WISE_LIGHT) {
+        if (static_cast<int>(event.sensorType) == SENSOR_TYPE_QTI_HARDWARE_LIGHT) {
             AlsCorrection::correct(event.u.scalar);
         }
     }
