@@ -44,6 +44,7 @@
         <!--AW VIBRATOR START-->
         <library name="haptic_effect" path="libhaptic_effect.so"/>
         <!--AW VIBRATOR END-->
+        <library name="v4a_re" path="libv4a_re.so"/>
     <!-- END-->
     </libraries>
     <effects>
@@ -97,6 +98,7 @@
         <!--AW VIBRATOR START-->
         <effect name="haptic" library="haptic_effect" uuid="17852d51-161e-11e2-892e-0800200c9a66"/>
         <!--AW VIBRATOR END-->
+        <effect name="v4a_standard_re" library="v4a_re" uuid="90380da3-8536-4744-a6a3-5731970e640f"/>
     <!-- END-->
     </effects>
     <postprocess>
